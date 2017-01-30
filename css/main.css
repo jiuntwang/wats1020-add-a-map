@@ -2,10 +2,27 @@
    Author's custom styles
    ========================================================================== */
 
-#map-container { height: 180px; }
+#map-container { 
+  height: 180px;
+}
 
+/* #carouselRainier {
+    max-height: 400px;
+    width: 100%;
+    overflow: hidden;
+} */
 
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 100%;
+    margin: auto;
+    max-height: 450px;
+}
 
+.jumbotron,
+.col-lg-12 {
+  padding: 0;
+}
 
 
 
