@@ -19,11 +19,20 @@
 // interesting locations. (You'll need to figure out the latitude/longitude for
 // these locations using a mapping tool such as Google Maps.)
 
-var mymap = L.map('mapbox://styles/mapbox/streets-v10').setView([51.505, -0.09], 13);
+$(document).ready(function() {
 
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1bnR3YW5nIiwiYSI6ImNpeWs5OWVvMjAwMHYyd25yNnh5b2wzZHUifQ.ZIXQ4cl0l5C5UNYuuJtTzw', {
+var mymap = L.map('map-container').setView([46.852, -121.760], 13);
+
+var marker = L.marker([46.852, -121.760]).addTo(mymap);
+marker.bindPopup("<b>Welcome to Mt. Rainier!</b><br>This peak is 4,392 feet high.");  
+  
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
-    id: 'your.mapbox.project.id',
-    accessToken: 'your.mapbox.public.access.token'
+    id: 'jiuntwang.2pmpkfb4',
+    accessToken: 'pk.eyJ1Ijoiaml1bnR3YW5nIiwiYSI6ImNpeWs5OWVvMjAwMHYyd25yNnh5b2wzZHUifQ.ZIXQ4cl0l5C5UNYuuJtTzw'
 }).addTo(mymap);
+
+});
+
+
