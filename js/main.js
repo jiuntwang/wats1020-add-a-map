@@ -22,17 +22,29 @@
 $(document).ready(function() {
 
 var mymap = L.map('map-container').setView([46.852, -121.760], 13);
-
-var marker = L.marker([46.852, -121.760]).addTo(mymap);
-marker.bindPopup("<b>Welcome to Mt. Rainier!</b><br>This peak is 4,392 feet high.");  
   
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+var defaultLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
     id: 'jiuntwang.2pmpkfb4',
     accessToken: 'pk.eyJ1Ijoiaml1bnR3YW5nIiwiYSI6ImNpeWs5OWVvMjAwMHYyd25yNnh5b2wzZHUifQ.ZIXQ4cl0l5C5UNYuuJtTzw'
 }).addTo(mymap);
+  
+  
+var marker = L.marker([46.852, -121.760]).addTo(mymap);
+marker.bindPopup("<b>Welcome to Mt. Rainier!</b><br>This peak is 4,392 feet high.").openPopup();
+
+var mapLayers = {
+    "Satellite": satLayer,
+    "Default View": defaultLayer,
+    "Street View": streetLayer
+}
+ 
+// var secondMarker = L.marker([46.791, -121.911]).addTo(mymap);
+// marker.bindPopup("<b>Glacier View Wilderness Area</b>").openPopup();
+ 
 
 });
+
 
 
