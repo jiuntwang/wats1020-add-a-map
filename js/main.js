@@ -1,49 +1,49 @@
-/* Begin by adding your on ready handler here, and then create the
-   rest of your functions inside the on ready handler.
-
-   (Note that you do not need to manually call Bootstrap functions in
-   your Javascript because Bootstrap will automatically recognize your
-   HTML structures and invoke the proper JS code accordingly. Be sure
-   to reference the Bootstrap documentation.)
-*/
-
-// TODO: Inside of your on ready handler, invoke the Leaflet.js library
-// to draw a map in your `#map-container` div.
-
-// TODO: Add 2 layers to your map you have visuals. Use the Open Street Maps
-// tiles served through the MapQuest CDN. Consult this example to set up
-// the map tiles layers:
-
-
-// TODO: Customize that Map to show markers with popups at no fewer than 3
-// interesting locations. (You'll need to figure out the latitude/longitude for
-// these locations using a mapping tool such as Google Maps.)
+// Map
 
 $(document).ready(function() {
 
-var mymap = L.map('map-container').setView([46.852, -121.760], 13);
   
-var defaultLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+//Default Map
+var defaultLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1bnR3YW5nIiwiYSI6ImNpeWs5OWVvMjAwMHYyd25yNnh5b2wzZHUifQ.ZIXQ4cl0l5C5UNYuuJtTzw', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
-    id: 'jiuntwang.2pmpkfb4',
+    id: 'mapbox://styles/mapbox/streets-v10',
     accessToken: 'pk.eyJ1Ijoiaml1bnR3YW5nIiwiYSI6ImNpeWs5OWVvMjAwMHYyd25yNnh5b2wzZHUifQ.ZIXQ4cl0l5C5UNYuuJtTzw'
-}).addTo(mymap);
+});
   
   
+// Satellite Map
+var satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1bnR3YW5nIiwiYSI6ImNpeWs5OWVvMjAwMHYyd25yNnh5b2wzZHUifQ.ZIXQ4cl0l5C5UNYuuJtTzw', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox://styles/mapbox/satellite-v9',
+    accessToken: 'pk.eyJ1Ijoiaml1bnR3YW5nIiwiYSI6ImNpeWs5OWVvMjAwMHYyd25yNnh5b2wzZHUifQ.ZIXQ4cl0l5C5UNYuuJtTzw'
+});
+  
+// Define map default position, coordinates, zoom, and layers
+var mymap = L.map('map-container', {
+    center: [46.852, -121.760],
+    zoom: 13,
+    layers: [defaultLayer, satelliteLayer]
+});
+ 
+
+// Markers of interesting locations
 var marker = L.marker([46.852, -121.760]).addTo(mymap);
 marker.bindPopup("<b>Welcome to Mt. Rainier!</b><br>This peak is 4,392 feet high.").openPopup();
+  
 
-var mapLayers = {
-    "Satellite": satLayer,
-    "Default View": defaultLayer,
-    "Street View": streetLayer
-}
- 
-// var secondMarker = L.marker([46.791, -121.911]).addTo(mymap);
-// marker.bindPopup("<b>Glacier View Wilderness Area</b>").openPopup();
+// Define map layers
+var selectMaps = {
+    "Default": defaultLayer,
+    "Satellite": satelliteLayer,
+};  
+    
+// Select map layers control
+L.control.layers(selectMaps).addTo(mymap);   
  
 
+ 
 });
 
 
